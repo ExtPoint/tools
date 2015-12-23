@@ -5,7 +5,7 @@ Script for clean old builds on server. PHP script moved old build to trash dir, 
 
 ## Install
 
-1. Add clean script to root project folder
+Add clean script to root project folder
 
 ```
 /var/www/project-name/
@@ -20,21 +20,26 @@ Script for clean old builds on server. PHP script moved old build to trash dir, 
     clean.php
 ```
 
-2. Create trash directory
+Create trash directory
 
 ```sh
 mkdir /var/www/project-name/tmp/trash
 chmod 777 /var/www/project-name/tmp/trash
 ```
 
-3. Show script result (without execute)
+Add cron task
+
+```sh
+0 0 * * * php /var/www/project-name/clean.php m && rm -rf /var/www/project-name/tmp/trash/*
+```
+
+## Show script result (without execute)
 
 ```sh
 php /var/www/project-name/clean.php
 ```
 
 Result example:
-
 
 ```
 Note: Append 'm' argument for real move dirs to trash.
@@ -46,10 +51,4 @@ Last versions:
   /var/www/hoc2015/v3.1-123
 Old versions (will be move):
   /var/www/hoc2015/v3.1-122
-```
-
-3. Add cron task
-
-```sh
-0 0 * * * php /var/www/project-name/clean.php m && rm -rf /var/www/project-name/tmp/trash/*
 ```
